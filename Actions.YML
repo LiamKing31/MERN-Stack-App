@@ -1,0 +1,18 @@
+Name: DeploytoHeroku
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: terminal
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: "bookinator9999" #Must be unique in Heroku
+          heroku_email: "thz9706@autuni.ac.nz"
+          appdir: "backend" # <- This will point to the api folder in your project
+          procfile: "web:node backend/server.js"
